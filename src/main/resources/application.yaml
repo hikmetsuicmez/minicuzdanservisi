@@ -1,20 +1,17 @@
 spring:
-  application:
-    name: minicuzdanservisi
-  datasource:
-    url: jdbc:postgresql://localhost:5432/minicuzdanservisi
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-  jpa:
-    open-in-view: false
-    hibernate:
-        ddl-auto: validate
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-		
-
-
-		
-		
+    config:
+        import: optional:file:.env[.properties]
+    application:
+        name: minicuzdanservisi
+    datasource:
+        url: jdbc:postgresql://localhost:5432/minicuzdanservisi
+        username: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
+    jpa:
+        open-in-view: false
+        hibernate:
+            ddl-auto: validate
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true

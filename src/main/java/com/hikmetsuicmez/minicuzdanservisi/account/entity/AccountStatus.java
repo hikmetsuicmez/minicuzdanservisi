@@ -1,4 +1,4 @@
-package com.hikmetsuicmez.minicuzdanservisi.account;
+package com.hikmetsuicmez.minicuzdanservisi.account.entity;
 
 public enum AccountStatus {
 	

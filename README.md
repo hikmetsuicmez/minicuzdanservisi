@@ -1,4 +1,3 @@
-Markdown
 # Mini Cüzdan Servisi 🚀
 
 Mini Cüzdan Servisi, kişisel finans ve cüzdan yönetim süreçlerini yürütmek için geliştirilmiş bir Spring Boot REST API projesidir.
@@ -10,6 +9,7 @@ Mini Cüzdan Servisi, kişisel finans ve cüzdan yönetim süreçlerini yürütm
 * **Java 21+**
 * **Spring Boot 4.x**
 * **Spring Data JPA & Hibernate**
+* **Flyway** (Veritabanı Migrasyon Yönetimi)
 * **PostgreSQL**
 * **Docker & Docker Compose**
 
@@ -26,3 +26,22 @@ Proje kök dizininde yer alan `.env.example` dosyasını kopyalayarak `.env` ad�
 
 ```bash
 cp .env.example .env
+```
+### 🐳 Docker Yönetim Adımları
+
+
+* Veritabanını Arka Planda Başlatma
+	* docker compose up -d
+	
+* Çalışan Konteynerleri Kontrol Etme
+	* docker compose ps
+	
+* Logları İzleme
+	* docker compose logs -f postgres
+	
+* Konteynerleri Durdurma
+	* docker compose stop
+	
+### 💻 Uygulamayı Çalıştırma
+
+* **./mvnw spring-boot:run**

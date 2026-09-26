@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.hikmetsuicmez.minicuzdanservisi.account.exception.AccountNotFoundException;
+import com.hikmetsuicmez.minicuzdanservisi.account.exception.InvalidAccountStateException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,7 +29,6 @@ public class GlobalExceptionHandler {
         problemDetail.setTitle("Hesap Bulunamadı");
         return problemDetail;
     }
-	
 	
 	// Validation Hataları (MethodArgumentNotValidException) -> 400 BAD_REQUEST
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -67,4 +67,15 @@ public class GlobalExceptionHandler {
 
 	    return problemDetail;
 	}
+	
+	// Hesap Durumu / Tipi İş Kuralı Hataları -> 422 UNPROCESSABLE_CONTENT
+    @ExceptionHandler(InvalidAccountStateException.class)
+    public ProblemDetail handleInvalidAccountStateException(InvalidAccountStateException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.UNPROCESSABLE_CONTENT, 
+                ex.getMessage()
+        );
+        problemDetail.setTitle("Geçersiz Hesap Durumu");
+        return problemDetail;
+    }
 }

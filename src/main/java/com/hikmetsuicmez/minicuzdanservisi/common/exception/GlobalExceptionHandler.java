@@ -15,6 +15,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import com.hikmetsuicmez.minicuzdanservisi.account.exception.AccountNotFoundException;
 import com.hikmetsuicmez.minicuzdanservisi.account.exception.InvalidAccountStateException;
+import com.hikmetsuicmez.minicuzdanservisi.ledger.exception.InsufficientBalanceException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -78,4 +79,16 @@ public class GlobalExceptionHandler {
         problemDetail.setTitle("Geçersiz Hesap Durumu");
         return problemDetail;
     }
+    
+    
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ProblemDetail handleInsufficientBalanceException(InsufficientBalanceException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.UNPROCESSABLE_CONTENT,
+                ex.getMessage()
+        );
+        problemDetail.setTitle("Yetersiz Bakiye");
+        return problemDetail;
+    }
+    
 }

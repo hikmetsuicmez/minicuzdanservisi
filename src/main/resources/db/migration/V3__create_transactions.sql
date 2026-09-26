@@ -1,0 +1,6 @@
+CREATE TABLE transactions(
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	transaction_type VARCHAR(20) NOT NULL CHECK (transaction_type IN ('DEPOSIT', 'TRANSFER')),
+	description VARCHAR(255),
+	created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);

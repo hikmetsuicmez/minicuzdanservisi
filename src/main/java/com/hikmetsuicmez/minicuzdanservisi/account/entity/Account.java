@@ -25,6 +25,7 @@ public class Account {
 		this.ownerName = ownerName;
 		this.currency = CURRENCY_TRY;
 		this.status = AccountStatus.ACTIVE;
+		this.accountType = AccountType.CUSTOMER;
 	}
 	
 	protected Account() {}
@@ -42,6 +43,10 @@ public class Account {
 	@Column(name = "status", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private AccountStatus status;
+	
+	@Column(name = "account_type", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private AccountType accountType;
 	
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp

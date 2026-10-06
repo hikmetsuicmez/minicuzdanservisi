@@ -23,9 +23,10 @@ public class Transaction {
 	
 	protected Transaction() {}
 	
-	public Transaction(TransactionType type, String description) {
+	public Transaction(TransactionType type, String description, String idempotencyKey) {
 		this.type = type;
 		this.description = description;
+		this.idempotencyKey = idempotencyKey;
 	}
 	
 	@Id
@@ -37,6 +38,9 @@ public class Transaction {
 	private TransactionType type;
 	
 	private String description;
+	
+	@Column(name = "idempotency_key")
+	private String idempotencyKey;
 	
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp

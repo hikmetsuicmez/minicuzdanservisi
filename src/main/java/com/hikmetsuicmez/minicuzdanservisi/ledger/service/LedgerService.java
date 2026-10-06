@@ -51,7 +51,8 @@ public class LedgerService {
 		
 		Transaction transaction = new Transaction(
 				TransactionType.DEPOSIT, 
-				customerDescription
+				customerDescription,
+				null
 		);	
 		transactionRepository.save(transaction);	
 		
@@ -108,7 +109,8 @@ public class LedgerService {
 		
 		Transaction transaction = new Transaction(
 				TransactionType.TRANSFER, 
-				request.description().isBlank() ? transferDescription : request.description() 
+				request.description().isBlank() ? transferDescription : request.description(),
+				null
 		);
 		transactionRepository.save(transaction);	
 

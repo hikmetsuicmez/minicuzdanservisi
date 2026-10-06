@@ -83,14 +83,15 @@ public class LedgerService {
 	@Transactional
 	public TransferResponse transfer(TransferRequest request) {
 		
+		Account senderAccount = accountRepository.findByIdForUpdate(request.senderAccountId())
+				.orElseThrow(() -> new AccountNotFoundException(request.senderAccountId()));
+		
 		BigDecimal amount = request.amount().setScale(2, RoundingMode.UNNECESSARY);
 
 		if (Objects.equals(request.senderAccountId(), request.recipientAccountId())) {
 		    throw new InvalidAccountStateException("Gönderen ve alıcı hesap aynı olamaz. Kendinize transfer yapamazsınız.");
 		}
 		
-		Account senderAccount = accountRepository.findById(request.senderAccountId())
-				.orElseThrow(() -> new AccountNotFoundException(request.senderAccountId()));
 		
 		Account recipientAccount = accountRepository.findById(request.recipientAccountId())
 				.orElseThrow(() -> new AccountNotFoundException(request.recipientAccountId()));
